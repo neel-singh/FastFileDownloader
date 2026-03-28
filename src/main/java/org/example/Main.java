@@ -33,7 +33,9 @@ public class Main {
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 
             connection.setRequestMethod("GET");
+            connection.setInstanceFollowRedirects(true);
             connection.connect();
+
             long fileSize = connection.getContentLengthLong();
 
             System.out.println("File Size: " + fileSize + " bytes");

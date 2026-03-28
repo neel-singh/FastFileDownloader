@@ -32,8 +32,9 @@ public class DownloadTask implements Runnable {
 
             String range = "bytes=" + start + "-" + end;
             connection.setRequestProperty("Range", range);
-            connection.setConnectTimeout(10000);   // ← added
-            connection.setReadTimeout(30000);      // ← added
+            connection.setConnectTimeout(10000);
+            connection.setReadTimeout(30000);
+            connection.setInstanceFollowRedirects(true);
 
             connection.connect();
 
@@ -54,8 +55,9 @@ public class DownloadTask implements Runnable {
 
             System.out.println("Finished: " + fileName);
 
-        } catch (Exception e) {
-            System.out.println("Error in thread: " + e.getMessage());
+        }
+        catch (Exception e) {
+            e.printStackTrace();  // ← change from e.getMessage()
         }
     }
 }
